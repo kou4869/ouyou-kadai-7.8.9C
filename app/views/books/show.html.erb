@@ -30,12 +30,17 @@
             <% end %>
           <% end %>
           </td>
+          <td>
+            <%= "コメント: #{@book.book_comments.count}" %>
+          </td>
+          
           <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', book_path(@book.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
           <% end %>
         </tr>
       </table>
+      <%= render 'book_comments/comment', book: @book, book_comment: @book_comment %>
     </div>
   </div>
 </div>
