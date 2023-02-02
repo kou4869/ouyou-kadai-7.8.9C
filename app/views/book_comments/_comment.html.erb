@@ -1,32 +1,22 @@
-  <table>
-    <tbody>
-      <% book.book_comments.each do |book_comment| %>
-      <tr>
+<table>
+  <tbody>
+    <% book.book_comments.each do |book_comment| %>
+    <tr>
+      <td>
+        <%= image_tag book_comment.user.get_profile_image, size:"100x100" %>
+      </td>
+      <td><%= book_comment.user.name %></td>
+      <% if book_comment.user == current_user %>
         <td>
-          <%= image_tag book_comment.user.get_profile_image, size:"100x100" %>
+          <%= link_to 'destroy', book_book_comment_path(book_comment.book, book_comment), method: :delete, class: "btn btn-danger btn-sm" %>
         </td>
-        <td><%= book_comment.user.name %></td>
-        <% if book_comment.user == current_user %>
-          <td>
-            <%= link_to 'destroy', book_book_comment_path(book_comment.book, book_comment), method: :delete, class: "btn btn-danger btn-sm" %>
-          </td>
-        <% end %>
-      </tr>
-      <tr>
-        <td>
-        <%= book_comment.comment %>
-        </td>
-      </tr>
       <% end %>
-    </tbody>
-  </table>
-  
-  <%= form_with model:[book,book_comment] do |f| %>
-  <div>
-    <%= f.text_area :comment %>
-  </div>
-  <div>
-    <%= f.submit "送信" %>
-  </div>
-  <% end %>
-</div>
+    </tr>
+    <tr>
+      <td>
+      <%= book_comment.comment %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
