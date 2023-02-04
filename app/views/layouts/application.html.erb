@@ -12,6 +12,13 @@
     <%= render 'layouts/header' %>
       <main>
         <p id="notice"><%= notice %></p>
+        <div class="content">
+          <div class="row">
+            <div class="mx-auto">
+              <%= render 'searches/serach' %>
+            </div>
+          </div>
+        </div>
         <%= yield %>
       </main>
     <%= render 'layouts/footer' %>
