@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :book_comment, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :informations, dependent: :destroy
   has_one_attached :profile_image
 
 
@@ -51,7 +53,7 @@ class User < ApplicationRecord
       User.where('name LIKE ?','%' + word + '%')
     end
   end
-  
+
 
 
   def get_profile_image
