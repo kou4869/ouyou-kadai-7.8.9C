@@ -3,8 +3,29 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    # ↑ showのページで、ユーザー１人１人の情報を持ってくる必要があるため、User.find(params[:id])で情報を取得
     @books = @user.books
     @book = Book.new
+    @current_information = Information.where(user_id: current_user.id)
+    @another_information = Information.where(user_id: @user.id)
+    # ↑ 上の２文は、roomがcreateされたときに、現在ログインしているユーザーと、「チャットへ」を押されたユーザー、
+    #   両方をInformationテーブルに記録するために、whereメソッドでもう一人、相手のユーザーを探す記述。
+    if @user.id == current_user.id  # roomが作成されている場合と、されていない場合に条件分岐を指定した記述
+    else
+      @current_information.each do |current|
+        @another_information.each do |another|
+          if current.room_id == another.room_id then
+            @is_room = true
+            @room_id = current.room_id
+          end
+        end
+      end
+      if @is_room
+      else
+        @room = Room.new
+        @information = Information.new
+      end
+    end
   end
 
   def index
