@@ -1,4 +1,4 @@
-<% @some_information.each do |i| %>
+<% @entries.each do |i| %>
   <% if @my_user_id != i.user.id %>
     <div class="user-name">
       <h2><%= i.user.name %>さんとのトークルーム</h2>
@@ -11,7 +11,7 @@
   <div class="ctat p-5 d-flex flex-column">
     <% if @messages.present? %>
       <% @messages.each do |m| %>7
-        <div class="ctat-boox p-3 <%= @my_user_id == m.user.id? 'align-self-end' : 'align-self-start' %>">
+        <div class="chat-box p-3 <%= @my_user_id == m.user.id ? 'align-self-end' : 'align-self-start' %>">
           <p class="m-0"><small><%= m.user.name %></small></p>
           <p class="p-2 mb-1 bg-light text-dark"><%= m.message %></p>
         </div>
@@ -20,10 +20,9 @@
   </div>
 
   <div class="posts">
-    <%= form_with model: @message do |f| %>
+    <%= form_with model: [@room, @message] do |f| %>
       <%= f.text_field :message, placeholder: "メッセージを入力して下さい", size: 50, class: "form-text-field" %>
-        <%= f.submit "投稿", class: 'form-submit' %>
-      <% end %>
+      <%= f.submit "投稿", class: 'form-submit' %>
     <% end %>
   </div>
 </div>

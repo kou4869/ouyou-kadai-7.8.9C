@@ -1,6 +1,6 @@
-class CreateInformation < ActiveRecord::Migration[6.1]
+class CreateEntries < ActiveRecord::Migration[6.1]
   def change
-    create_table :information do |t|
+    create_table :entries do |t|
       t.references :user, null: false, foreign_key: true
       t.references :room, null: false, foreign_key: true
 
