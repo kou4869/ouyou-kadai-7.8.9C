@@ -4,7 +4,6 @@ class CreateBookComments < ActiveRecord::Migration[6.1]
       t.text :comment
       t.integer :user_id
       t.integer :book_id
-      t.float :sta
 
       t.timestamps
     end

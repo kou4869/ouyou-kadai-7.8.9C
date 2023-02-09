@@ -17,6 +17,17 @@ class BooksController < ApplicationController
         x.favorited_users.includes(:favorites).where(created_at: from...to).size
       }.reverse
     @book = Book.new
+    
+    if params[:latest]
+      @books = Book.latest
+    elsif params[:old]
+      @books = Book.old
+    elsif params[:raty_count]
+      @books = Book.raty_count
+    else
+      @books = Book.all
+    end
+    
   end
 
   def create
@@ -52,13 +63,13 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body)
+    params.require(:book).permit(:title, :body, :raty)
   end
-  
+
   def correct_user
     @book = Book.find(params[:id])
     @user = @book.user
     redirect_to(books_path) unless @user == current_user
   end
-  
+
 end

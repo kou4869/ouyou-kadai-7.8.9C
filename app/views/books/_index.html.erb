@@ -4,7 +4,7 @@
       <th></th>
       <th>Title</th>
       <th>Opinion</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
   <tbody>
@@ -21,10 +21,10 @@
         <td id="favorite_buttons_<%= book.id %>">
           <%= render "favorites/favorite", book: book %>
         </td>
-        
         <td>
           <p><%= "コメント: #{book.book_comments.count}" %></p>
         </td>
+        <td><%= render "books/raty", book: book %></td>
         <td>
           <p class="view_count">閲覧数: <%= book.impressionist_count %></p>
         </td>

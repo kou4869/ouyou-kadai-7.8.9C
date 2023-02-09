@@ -22,6 +22,12 @@ class Book < ApplicationRecord
   end
 
 
+  #投稿の並び替え
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(create_at: :asc)}
+  scope :raty_count, -> {order(raty: :desc)}
+
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
