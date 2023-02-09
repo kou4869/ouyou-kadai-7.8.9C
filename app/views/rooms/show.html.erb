@@ -20,7 +20,7 @@
   </div>
 
   <div class="posts">
-    <%= form_with model: @message do |f| %>
+    <%= form_with model: @message, local: true do |f| %>
       <%= f.text_field :message, placeholder: "メッセージを入力して下さい", size: 50, class: "form-text-field" %>
       <%= f.submit "投稿", class: 'form-submit' %>
     <% end %>
