@@ -21,10 +21,10 @@
         <td id="favorite_buttons_<%= book.id %>">
           <%= render "favorites/favorite", book: book %>
         </td>
+        <td><%= render "books/star", book: book %></td>
         <td>
           <p><%= "コメント: #{book.book_comments.count}" %></p>
         </td>
-        <td><%= render "books/raty", book: book %></td>
         <td>
           <p class="view_count">閲覧数: <%= book.impressionist_count %></p>
         </td>
