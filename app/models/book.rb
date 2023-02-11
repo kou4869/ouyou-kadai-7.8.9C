@@ -1,4 +1,5 @@
 class Book < ApplicationRecord
+  acts_as_taggable #追加
   is_impressionable
 
   belongs_to :user

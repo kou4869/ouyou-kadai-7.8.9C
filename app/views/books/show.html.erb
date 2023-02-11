@@ -22,12 +22,14 @@
               <%= link_to @book.category, tagsearches_search_path(content: @book.category) %>
             <% end %>
           </td>
+          <td>
+            <%= render "books/tag_list", tag_list: @book.tag_list %>
+          </td>
+
           <!--いいね機能のajax-partial-->
           <td id="favorite_buttons_<%= @book.id %>">
             <%= render "favorites/favorite", book: @book %>
           </td>
-
-
           <td>
             <div id="show-stars"></div>
           </td>

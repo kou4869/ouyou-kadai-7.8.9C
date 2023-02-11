@@ -8,8 +8,8 @@
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
   <div class="form-group">
-    <label>Category</label>
-    <%= f.text_field :category, class: 'fform-control book_category' %>
+    <%= f.label :tag_list %>
+    <%= f.text_field :tag_list, value: @book.tag_list.join(','), class: 'form-control' %>
   </div>
 
 
