@@ -7,6 +7,7 @@ class Book < ApplicationRecord
   has_many :book_comments, dependent: :destroy
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
+  validates :category, presence: true
 
   #検索方法の分岐
   def self.search_for(word, method)

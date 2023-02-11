@@ -4,6 +4,7 @@
       <th></th>
       <th>Title</th>
       <th>Opinion</th>
+      <th>Tag</th>
       <th colspan="4"></th>
     </tr>
   </thead>
@@ -16,7 +17,13 @@
         </td>
         <td><%= link_to book.title,book %></td>
         <td><%= book.body %></td>
-        
+        <td>
+          <% if book.category.present? %>
+            <%= link_to book.category, tagsearches_search_path(word: book.category) %>
+          <% end %>
+        </td>
+
+
         <!--いいね機能のajax-partial-->
         <td id="favorite_buttons_<%= book.id %>">
           <%= render "favorites/favorite", book: book %>

@@ -18,18 +18,15 @@
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
           <td>
-          <% if @book.favorited_by?(current_user) %>
-            <%= link_to book_favorite_path(@book), method: :delete do %>
-              <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-              <%= @book.favorites.count %>
+            <% if @book.category.present? %>
+              <%= link_to @book.category, tagsearches_search_path(content: @book.category) %>
             <% end %>
-          <% else %>
-            <%= link_to book_favorite_path(@book), method: :post do %>
-              <i class="fas fa-heart" aria-hidden="true"></i>
-              <%= @book.favorites.count %>
-            <% end %>
-          <% end %>
           </td>
+          <!--いいね機能のajax-partial-->
+          <td id="favorite_buttons_<%= @book.id %>">
+            <%= render "favorites/favorite", book: @book %>
+          </td>
+
 
           <td>
             <div id="show-stars"></div>
@@ -47,7 +44,7 @@
               };
               window.raty(showRateElement, showOpt);
             });
-            </script>	
+            </script>
           <td>
             <div>コメント件数：<span id="comment_count"><%= @book.book_comments.count %></span></div>
           </td>
