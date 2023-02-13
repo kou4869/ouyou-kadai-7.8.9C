@@ -1,0 +1,6 @@
+<div class="tag_search_form">
+  <%= form_with url: books_tag_searche_path, local: true do |t| %>
+    <%= t.text_field :tag_name %>
+    <%= t.submit "タグ検索" %>
+  <% end 
+</div>
