@@ -60,6 +60,10 @@ class BooksController < ApplicationController
   end
 
   def tag_search
+    @books = Book.all
+    if params[:tag_name]
+      @books = Book.tagged_with("#{params[:tag_name]}")
+    end
   end
 
 
