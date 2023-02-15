@@ -1,3 +1,5 @@
 <% tag_list.each do |tag| %>
-  <%= span.badge.badge-primary.mr-1.p-2 = link_to tag, books_tag_searche_path(tag_name: tag), class: "text-white" %>
+  <%= link_to books_tag_searche_path(tag_name), class: "text-white" do %>
+    <%= tag %>
+  <% end %>
 <% end %>

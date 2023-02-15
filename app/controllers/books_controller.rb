@@ -7,6 +7,7 @@ class BooksController < ApplicationController
     @booknew = Book.new
     @book_comment = BookComment.new
     impressionist(@book, nil, :unique => [:ip_address])
+    #@tags = Book.tag_counts_on(:tags)
   end
 
   def index
@@ -17,6 +18,7 @@ class BooksController < ApplicationController
         x.favorited_users.includes(:favorites).where(created_at: from...to).size
       }.reverse
     @book = Book.new
+    #@tags = Book.tag_counts_on(:tags)
     
     if params[:latest]
       @books = Book.latest
@@ -61,8 +63,9 @@ class BooksController < ApplicationController
 
   def tag_search
     @books = Book.all
-    if params[:tag_name]
-      @books = Book.tagged_with("#{params[:tag_name]}")
+    @tags = Book.tag_counts_on(:tags).order('count DESC')     # 全タグ(Postモデルからtagsカラムを降順で取得)
+    if @tag = params[:tag]   # タグ検索用
+      @books = Book.tagged_with(params[:tag])
     end
   end
 

@@ -4,11 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :books, dependent: :destroy
+  has_many :books,        dependent: :destroy
   has_many :book_comment, dependent: :destroy
-  has_many :favorites, dependent: :destroy
-  has_many :messages, dependent: :destroy
-  has_many :entries, dependent: :destroy
+  has_many :favorites,    dependent: :destroy
+  has_many :messages,     dependent: :destroy
+  has_many :entries,      dependent: :destroy
   has_one_attached :profile_image
 
 

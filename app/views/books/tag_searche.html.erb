@@ -1,2 +1,4 @@
-<h3>Books search for "<%= @book.tag_list %>"</h3>
-<%= render 'books/index', books: @books %>
+<h3>Books search for "<%= @tag %>"</h3>
+<% if @books.present? %>
+  <%= render 'books/index', books: @books %>
+<% end %>
